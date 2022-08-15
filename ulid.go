@@ -520,12 +520,10 @@ func (id *ULID) Scan(src interface{}) error {
 // error. If your use case requires zero-value ULIDs to return a non-nil error,
 // you can create a wrapper type that special-cases this behavior.
 //
-//	var zeroValueULID ulid.ULID
-//
 //	type invalidZeroValuer ulid.ULID
 //
 //	func (v invalidZeroValuer) Value() (driver.Value, error) {
-//	    if ulid.ULID(v).Compare(zeroValueULID) == 0 {
+//	    if ulid.ULID(v).IsZero() {
 //	        return nil, fmt.Errorf("zero value")
 //	    }
 //	    return ulid.ULID(v).Value()
